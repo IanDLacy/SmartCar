@@ -48,24 +48,7 @@ void setup()
 
 void test()
 {
-	digitalWrite(in1, LOW);
-	digitalWrite(in2, HIGH);
-	digitalWrite(in3, LOW);
-	digitalWrite(in4, HIGH);
-	analogWrite(enA, pwm);
-	analogWrite(enB, pwm);
-	/*for (pos = 90; pos >= 0; pos -= 1)
-	{
-		RangeFinderServo.write(pos);
-		delay(5);
-	}
-	for (pos = 0; pos <= 180; pos += 1)
-	{
-		RangeFinderServo.write(pos);
-		delay(5);
-	}
-	analogWrite(enA, 0);
-	analogWrite(enB, 0);*/
+
 }
 
 
@@ -155,32 +138,17 @@ void decideDirection()
 {
 	if (leftDegrees > rightDegrees)
 	{
-		initTurn("right", rightDegrees);
+		turn("right");
 	}
 	else
 	{
-		initTurn("left", leftDegrees);
+		turn("left");
 	}
 }
 
 
 
-void initTurn(String direction, int amount)
-{
-	amount = (ceil((amount / 10) + 1));
-	if (direction = "left")
-	{
-		turnRight(amount);
-	}
-	else
-	{
-		turnLeft(amount);
-	}
-}
-
-
-
-void turnRight(int turnCount)
+void turn(String direction)
 {
 	digitalWrite(in2, LOW);
 	digitalWrite(in1, HIGH);
@@ -189,45 +157,38 @@ void turnRight(int turnCount)
 	analogWrite(enA, pwm);
 	analogWrite(enB, pwm);
 	delay(100);
-	for (i = 0; i < turnCount; i++)
+
+	if (direction == "right")
 	{
-		digitalWrite(in2, LOW);
-		digitalWrite(in1, HIGH);
-		digitalWrite(in3, LOW);
-		digitalWrite(in4, HIGH);
-		analogWrite(enA, pwm);
-		analogWrite(enB, pwm);
-		delay(10);
-		analogWrite(enA, 0);
-		analogWrite(enB, 0);
-		delay(10);
+		while (!noObstacle(far))
+		{
+			digitalWrite(in2, LOW);
+			digitalWrite(in1, HIGH);
+			digitalWrite(in3, LOW);
+			digitalWrite(in4, HIGH);
+			analogWrite(enA, pwm);
+			analogWrite(enB, pwm);
+			delay(10);
+			analogWrite(enA, 0);
+			analogWrite(enB, 0);
+			delay(10);
+		}
 	}
-	forward();
-}
-
-
-
-void turnLeft(int turn)
-{
-	digitalWrite(in2, LOW);
-	digitalWrite(in1, HIGH);
-	digitalWrite(in4, LOW);
-	digitalWrite(in3, HIGH);
-	analogWrite(enA, pwm);
-	analogWrite(enB, pwm);
-	delay(100);
-	for (i = 0; i < turn; i++)
+	else
 	{
-		digitalWrite(in1, LOW);
-		digitalWrite(in2, HIGH);
-		digitalWrite(in4, LOW);
-		digitalWrite(in3, HIGH);
-		analogWrite(enA, pwm);
-		analogWrite(enB, pwm);
-		delay(10);
-		analogWrite(enA, 0);
-		analogWrite(enB, 0);
-		delay(10);
+		while (noObstacle(far))
+		{
+			digitalWrite(in1, LOW);
+			digitalWrite(in2, HIGH);
+			digitalWrite(in4, LOW);
+			digitalWrite(in3, HIGH);
+			analogWrite(enA, pwm);
+			analogWrite(enB, pwm);
+			delay(10);
+			analogWrite(enA, 0);
+			analogWrite(enB, 0);
+			delay(10);
+		}	
 	}
 	forward();
 }
@@ -247,6 +208,8 @@ long readRangefinder()
 	cm = microsecondsToCentimeters(duration);
 	return cm;
 }
+
+
 
 long microsecondsToCentimeters(long microseconds)
 {
