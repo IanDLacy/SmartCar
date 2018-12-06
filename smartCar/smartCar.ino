@@ -24,13 +24,11 @@ int i;
 int servoDelay = 2;
 int leftDegrees = 90;
 int rightDegrees = 90;
-int far = 100;
+int far = 150;
 int near = 30;
+int turnAttemptCounter = 0;
 Servo RangeFinderServo;
-
 NewPing sonar(trig, echo, maximumRange);
-
-
 
 void setup()
 {
@@ -43,15 +41,6 @@ void setup()
 	RangeFinderServo.attach(11);
 
 }
-
-
-
-void test()
-{
-
-}
-
-
 
 bool noObstacle(int obsDis)
 {
@@ -66,10 +55,9 @@ bool noObstacle(int obsDis)
 	}
 }
 
-
-
 void forward()
 {
+	turnAttemptCounter = 0;
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, HIGH);
 	digitalWrite(in3, LOW);
@@ -79,8 +67,6 @@ void forward()
 	while (noObstacle(near));
 	initLook();
 }
-
-
 
 void initLook()
 {
@@ -92,8 +78,6 @@ void initLook()
 	lookLeft();
 	decideDirection();
 }
-
-
 
 void lookRight()
 {
@@ -109,10 +93,9 @@ void lookRight()
 		delay(servoDelay);
 	}
 	RangeFinderServo.write(90);
-	delay(10);
+	delay(100);
+	return;
 }
-
-
 
 void lookLeft()
 {
@@ -123,77 +106,62 @@ void lookLeft()
 		{
 			leftDegrees = pos - 90;
 			RangeFinderServo.write(90);
-			delay(10);
+			delay(100);
 			decideDirection();
 		}
 		delay(servoDelay);
 	}
 	RangeFinderServo.write(90);
-	delay(10);
+	delay(100);
+	return;
 }
-
-
 
 void decideDirection()
 {
 	if (leftDegrees > rightDegrees)
 	{
-		turn("right");
+		turn("right", rightDegrees);
 	}
 	else
 	{
-		turn("left");
+		turn("left", leftDegrees);
 	}
+	return;
 }
 
-
-
-void turn(String direction)
+void turn(String direction, int degrees)
 {
+	degrees = degrees * 2; // car turns approx half a degree per milisecond
 	digitalWrite(in2, LOW);
 	digitalWrite(in1, HIGH);
 	digitalWrite(in4, LOW);
 	digitalWrite(in3, HIGH);
-	analogWrite(enA, pwm);
+	analogWrite(enA, pwm); 
 	analogWrite(enB, pwm);
 	delay(100);
 
 	if (direction == "right")
 	{
-		while (!noObstacle(far))
-		{
-			digitalWrite(in2, LOW);
-			digitalWrite(in1, HIGH);
-			digitalWrite(in3, LOW);
-			digitalWrite(in4, HIGH);
-			analogWrite(enA, pwm);
-			analogWrite(enB, pwm);
-			delay(10);
-			analogWrite(enA, 0);
-			analogWrite(enB, 0);
-			delay(10);
-		}
+		digitalWrite(in2, LOW);
+		digitalWrite(in1, HIGH);
+		digitalWrite(in3, LOW);
+		digitalWrite(in4, HIGH);
+		analogWrite(enA, pwm);
+		analogWrite(enB, pwm);
+		delay(degrees);
 	}
 	else
 	{
-		while (noObstacle(far))
-		{
-			digitalWrite(in1, LOW);
-			digitalWrite(in2, HIGH);
-			digitalWrite(in4, LOW);
-			digitalWrite(in3, HIGH);
-			analogWrite(enA, pwm);
-			analogWrite(enB, pwm);
-			delay(10);
-			analogWrite(enA, 0);
-			analogWrite(enB, 0);
-			delay(10);
-		}	
+		digitalWrite(in1, LOW);
+		digitalWrite(in2, HIGH);
+		digitalWrite(in4, LOW);
+		digitalWrite(in3, HIGH);
+		analogWrite(enA, pwm);
+		analogWrite(enB, pwm);
+		delay(degrees);
 	}
 	forward();
 }
-
-
 
 long readRangefinder()
 {
@@ -209,17 +177,12 @@ long readRangefinder()
 	return cm;
 }
 
-
-
 long microsecondsToCentimeters(long microseconds)
 {
 	return microseconds / 29 / 2;
 }
 
-
-
 void loop()
 {
 	forward();
-	/*test();*/
 }
