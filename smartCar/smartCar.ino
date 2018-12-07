@@ -114,7 +114,6 @@ void setup()                      // Declare valueless function "setup" with no 
 	RangeFinderServo.attach(11);  // Attach object "RangeFinderServo" to pin "11".
 }
 
-
 // Function "test" is a custom function for testing components. It can be activated in function "loop".
 void test()                                    // Declare valueless function "test" with no parameters.
 {											  
@@ -145,7 +144,7 @@ void test()                                    // Declare valueless function "te
 		RangeFinderServo.write(pos);          // Move the Sensor Servo position to the current value from above.
 		delay(5);                             // Pause the program for 5 milliseconds.
 	}
-
+  
 	// Kill power to both motors.
 	analogWrite(enA, 0);                      // Kill power to motor A (left).
 	analogWrite(enB, 0);                      // Kill power to motor B (right).
@@ -233,79 +232,60 @@ void decideDirection()                        // Declare valueless function "dec
 {
 	if (leftDegrees > rightDegrees)           // If the value of "leftDegrees" is greater than the value of "rightDegrees", do the following.
 	{
-		initTurn("right", rightDegrees);      // Call function "initTurn" with parameters of string "right" and variable "rightDegrees".
-	}
-	else                                      // Otherwise, do the following.
-	{
-		initTurn("left", leftDegrees);        // Call function "initTurn" with parameters of string "left" and variable "leftDegrees".
-	}
-}
-
-// Function "initTurn" activates functions "turnRight" and "turnLeft" according to the information passed to it through its parameters. It also translates the degree values from function "decideDirection" to an amount for the turnng functions.
-void initTurn(String direction, int amount)    // Declare valueless function "initTurn" with parameters string "direction" and integer "amount".
-{
-	amount = (ceil((amount / 10) + 1));        // Set amount to the sum of "1" and, rounded up, the value of passed "amount" divided by 10.
-	if (direction = "left")                    // If the value of "drection" is equal to "left", do the following.
-	{
-		turnRight(amount);                     // Call function "turnRight", passing "amount" as a parameter.
+		turn("right");
 	}
 	else                                       // Otherwise, do the following.
 	{
-		turnLeft(amount);                      // Call function "turnLeft", passing "amount" as a parameter.
+		turn("left");
 	}
 }
 
-// Functions "turnRight" and "turnLeft" are nearly identical and are used to activate the motors to spin the vehicle by the amounts passed by function "initTurn". After turning, the function reactivates function "forward".
 
-void turnRight(int turnCount)                // Declare valueless function "turnRight" with parameter integer "turnCount".
-{                                            // Move vehicle in reverse.
-	digitalWrite(in2, LOW);                      // Set half of H-Bridge A to open.
-	digitalWrite(in1, HIGH);                     // Set half of H-Bridge A to closed.
-	digitalWrite(in4, LOW);                      // Set half of H-Bridge B to open.
-	digitalWrite(in3, HIGH);                     // Set half of H-Bridge B to closed.
-	analogWrite(enA, pwm);                       // Apply power to motor A (left) at full voltage (pwm is still "255").
-	analogWrite(enB, pwm);                       // Apply power to motor B (right) at full voltage (pwm is still "255").
-	delay(100);                              // Pause the program for 100 milliseconds.
-	for (i = 0; i < turnCount; i++)          // Set "i" to "0". While less than "turnCount", do the following, then increase by "1".
-	{                                        // Spin the vehicle clockwise.
-		digitalWrite(in2, LOW);                  // I don't need to comment this out again, I think we get the picture.
-		digitalWrite(in1, HIGH);                 //
-		digitalWrite(in3, LOW);                  //
-		digitalWrite(in4, HIGH);                 //
-		analogWrite(enA, pwm);                   //
-		analogWrite(enB, pwm);                   //
-		delay(10);                          // Pause the program for 10 milliseconds.
-		analogWrite(enA, 0);                // Stop the left motor.
-		analogWrite(enB, 0);                // Stop the right motor.
-		delay(10);                          // Pause the program for 10 milliseconds.
+
+void turn(String direction)
+{
+	digitalWrite(in2, LOW);
+	digitalWrite(in1, HIGH);
+	digitalWrite(in4, LOW);
+	digitalWrite(in3, HIGH);
+	analogWrite(enA, pwm);
+	analogWrite(enB, pwm);
+	delay(100);
+
+	if (direction == "right")
+	{
+		while (!noObstacle(far))
+		{
+			digitalWrite(in2, LOW);
+			digitalWrite(in1, HIGH);
+			digitalWrite(in3, LOW);
+			digitalWrite(in4, HIGH);
+			analogWrite(enA, pwm);
+			analogWrite(enB, pwm);
+			delay(10);
+			analogWrite(enA, 0);
+			analogWrite(enB, 0);
+			delay(10);
+		}
 	}
-	forward();                              // Call function "forward" with no parameters.
+	else
+	{
+		while (noObstacle(far))
+		{
+			digitalWrite(in1, LOW);
+			digitalWrite(in2, HIGH);
+			digitalWrite(in4, LOW);
+			digitalWrite(in3, HIGH);
+			analogWrite(enA, pwm);
+			analogWrite(enB, pwm);
+			delay(10);
+			analogWrite(enA, 0);
+			analogWrite(enB, 0);
+			delay(10);
+		}	
+	}
+	forward();                    
 }
-
-void turnLeft(int turn)                    // Function "turnLeft" is exactly the same as "turnRight" except for the following.
-{                                          //
-	digitalWrite(in2, LOW);                //
-	digitalWrite(in1, HIGH);               //
-	digitalWrite(in4, LOW);                //
-	digitalWrite(in3, HIGH);               //
-	analogWrite(enA, pwm);                 //
-	analogWrite(enB, pwm);                 //
-	delay(100);                            //
-	for (i = 0; i < turn; i++)             // Differently named local variable as the parameter.
-	{                                      // Opposite spin direction.
-		digitalWrite(in1, LOW);            //
-		digitalWrite(in2, HIGH);           //
-		digitalWrite(in4, LOW);            //
-		digitalWrite(in3, HIGH);           //
-		analogWrite(enA, pwm);             //
-		analogWrite(enB, pwm);             //
-		delay(10);                         //
-		analogWrite(enA, 0);               //
-		analogWrite(enB, 0);               //
-		delay(10);                         //
-	}                                      //
-	forward();                             //
-}                                          //
 
 // Function "readRangefinder" is used to pull data from the ultrasonic sensor and convert it to a distance value.
 long readRangefinder()                                // Declare long function "readRangefinder" with no parameters.
