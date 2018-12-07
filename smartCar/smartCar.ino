@@ -1,9 +1,9 @@
 /* Begin Metadata
 
-       Name:    Brother.ino
+       Name:    smartCar.ino
     Created:    12/4/2018 1:29:34 AM
     Authors:    Chris Sayen:  Code
-                   Ian Lacy:  Summary \ Goal
+                   Ian Lacy:  Program Summary \ Goal
                               Program Map \ Function Tree
                               Descriptions
                               Comments
@@ -52,7 +52,7 @@ End Program Summary \ Goal */
 	| - - - - - - - Function "microsecondsToCentimeters". <--|
 	| - - - - - Function "lookLeft". <--|
 	| - - - - Function "lookLeft" scans the left half of the vehicle's forward viewing area and activates function "decideDirection" if no obstacle is detected (using function "noObstacle") closer than the threshold (though "decideDirection" will still be activated by function "initLook" regardless. The purpose of this function to gather data used for function "decideDirection".
-	| - - - - - Function "noObstacle". <--|
+	| - - - - - Function "noObstacle".
 	| - - - - - - Function "readRangefinder".
 	| - - - - - - - Function "microsecondsToCentimeters". <--|
 	| - - - - - Function "decideDirection". <--|
@@ -116,7 +116,7 @@ void setup()                      // Declare valueless function "setup" with no 
 
 
 // Function "test" is a custom function for testing components. It can be activated in function "loop".
-void test()                                    // Declare valuless function "test" with no parameters.
+void test()                                    // Declare valueless function "test" with no parameters.
 {											  
 	// Move the vehicle forward at full speed.
 	
@@ -192,7 +192,7 @@ void initLook()                               // Declare function "initLook" to 
 }
 
 // Function "lookRight" scans the right half of the vehicle's forward viewing area and activates function "lookLeft" if no obstacle is detected (using function "noObstacle") closer than the threshold (though "lookLeft" will still be activated by function "initLook" regardless. The purpose of this function to gather data used for function "decideDirection".
-void lookRight()                              // Declare valuless function "lookRight" with no parameters.
+void lookRight()                              // Declare valueless function "lookRight" with no parameters.
 {
 	for (pos = 90; pos >= 0; pos -= 1)        // Set position value to "90". While greater than or equal to "0", do the following, then decrease by "1".
 	{
@@ -210,7 +210,7 @@ void lookRight()                              // Declare valuless function "look
 }
 
 // Function "lookLeft" scans the left half of the vehicle's forward viewing area and activates function "decideDirection" if no obstacle is detected (using function "noObstacle") closer than the threshold (though "decideDirection" will still be activated by function "initLook" regardless. The purpose of this function to gather data used for function "decideDirection".
-void lookLeft()                               // Declare valuless function "lookLeft" with no parameters.
+void lookLeft()                               // Declare valueless function "lookLeft" with no parameters.
 {
 	for (pos = 90; pos <= 180; pos += 1)      // Set position value to "90". While less than or equal to "180", do the following, then increase by "1".
 	{
@@ -229,7 +229,7 @@ void lookLeft()                               // Declare valuless function "look
 }
 
 // Function "decideDirection" picks which direction the vehicle will turn based on the 'clarity' data of each half of the vehicle's foward field of view as gathered by functions "lookRight" and "lookLeft", activating function "initTurn" accordingly.
-void decideDirection()                        // Declare valuless function "decideDirection" with no parameters.
+void decideDirection()                        // Declare valueless function "decideDirection" with no parameters.
 {
 	if (leftDegrees > rightDegrees)           // If the value of "leftDegrees" is greater than the value of "rightDegrees", do the following.
 	{
@@ -257,7 +257,7 @@ void initTurn(String direction, int amount)    // Declare valueless function "in
 
 // Functions "turnRight" and "turnLeft" are nearly identical and are used to activate the motors to spin the vehicle by the amounts passed by function "initTurn". After turning, the function reactivates function "forward".
 
-void turnRight(int turnCount)                // Declare valuless function "turnRight" with parameter integer "turnCount".
+void turnRight(int turnCount)                // Declare valueless function "turnRight" with parameter integer "turnCount".
 {                                            // Move vehicle in reverse.
 	digitalWrite(in2, LOW);                      // Set half of H-Bridge A to open.
 	digitalWrite(in1, HIGH);                     // Set half of H-Bridge A to closed.
