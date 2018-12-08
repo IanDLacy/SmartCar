@@ -115,6 +115,7 @@ void setup()                      // Declare valueless function "setup" with no 
 	RangeFinderServo.attach(11);  // Attach object "RangeFinderServo" to pin "11".
 }
 
+
 // Function "test" is a custom function for testing components. It can be activated in function "loop".
 void test()                                    // Declare valueless function "test" with no parameters.
 {											  
@@ -145,7 +146,7 @@ void test()                                    // Declare valueless function "te
 		RangeFinderServo.write(pos);          // Move the Sensor Servo position to the current value from above.
 		delay(5);                             // Pause the program for 5 milliseconds.
 	}
-  
+
 	// Kill power to both motors.
 	analogWrite(enA, 0);                      // Kill power to motor A (left).
 	analogWrite(enB, 0);                      // Kill power to motor B (right).
@@ -237,7 +238,7 @@ void decideDirection()                        // Declare valueless function "dec
 	{
 		turn("right", rightDegrees);
 	}
-	else                                       // Otherwise, do the following.
+	else                                      // Otherwise, do the following.
 	{
 		turn("left", leftDegrees);
 	}
@@ -265,7 +266,7 @@ void turn(String direction, int degrees)
 		analogWrite(enB, pwm);
 		delay(degrees);
 	}
-	else
+	else                                       // Otherwise, do the following.
 	{
 		digitalWrite(in1, LOW);
 		digitalWrite(in2, HIGH);
@@ -275,8 +276,33 @@ void turn(String direction, int degrees)
 		analogWrite(enB, pwm);
 		delay(degrees);
 	}
-	forward();                    
+	forward();                              // Call function "forward" with no parameters.
 }
+
+void turnLeft(int turn)                    // Function "turnLeft" is exactly the same as "turnRight" except for the following.
+{                                          //
+	digitalWrite(in2, LOW);                //
+	digitalWrite(in1, HIGH);               //
+	digitalWrite(in4, LOW);                //
+	digitalWrite(in3, HIGH);               //
+	analogWrite(enA, pwm);                 //
+	analogWrite(enB, pwm);                 //
+	delay(100);                            //
+	for (i = 0; i < turn; i++)             // Differently named local variable as the parameter.
+	{                                      // Opposite spin direction.
+		digitalWrite(in1, LOW);            //
+		digitalWrite(in2, HIGH);           //
+		digitalWrite(in4, LOW);            //
+		digitalWrite(in3, HIGH);           //
+		analogWrite(enA, pwm);             //
+		analogWrite(enB, pwm);             //
+		delay(10);                         //
+		analogWrite(enA, 0);               //
+		analogWrite(enB, 0);               //
+		delay(10);                         //
+	}                                      //
+	forward();                             //
+}                                          //
 
 // Function "readRangefinder" is used to pull data from the ultrasonic sensor and convert it to a distance value.
 long readRangefinder()                                // Declare long function "readRangefinder" with no parameters.
