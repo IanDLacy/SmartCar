@@ -207,8 +207,8 @@ void lookRight()                              // Declare valueless function "loo
 		delay(servoDelay);                    // Pause the program for milliseconds equal to the value of "servoDelay".
 	}
 	RangeFinderServo.write(90);               // Move the Sensor Servo position to 90 degrees.
-	delay(100);                               // Pause the program for 10 milliseconds.
-	return;
+	delay(100);                               // Pause the program for 100 milliseconds.
+	return;                                   // Return to parent function.
 }
 
 // Function "lookLeft" scans the left half of the vehicle's forward viewing area and activates function "decideDirection" if no obstacle is detected (using function "noObstacle") closer than the threshold (though "decideDirection" will still be activated by function "initLook" regardless. The purpose of this function to gather data used for function "decideDirection".
@@ -221,33 +221,37 @@ void lookLeft()                               // Declare valueless function "loo
 		{
 			leftDegrees = pos - 90;           // Set "leftDegres" to the difference between the current Sensor Servo position and "90".
 			RangeFinderServo.write(90);       // Move the Sensor Servo Position to 90 degrees.
-			delay(100);                        // Pause the program for 10 mlliseconds.
+			delay(100);                        // Pause the program for 100 mlliseconds.
 			decideDirection();                // Call function "decideDirection" with no parameters.
 		}
 		delay(servoDelay);                    // Pause the program for milliseconds equal to the value of "servoDelay".
 	}
 	RangeFinderServo.write(90);               // Move the Sensor Servo position to 90 degrees.
-	delay(100);                                // Pause the program for 10 milliseconds.
-	return;
+	delay(100);                               // Pause the program for 100 milliseconds.
+	return;                                   // Return to parent function.
 }
 
-// Function "decideDirection" picks which direction the vehicle will turn based on the 'clarity' data of each half of the vehicle's foward field of view as gathered by functions "lookRight" and "lookLeft", activating function "initTurn" accordingly.
+// Function "decideDirection" picks which direction the vehicle will turn based on the 'clarity' data of each half of the vehicle's foward field of view as gathered by functions "lookRight" and "lookLeft", activating function "turn" accordingly.
 void decideDirection()                        // Declare valueless function "decideDirection" with no parameters.
 {
 	if (leftDegrees > rightDegrees)           // If the value of "leftDegrees" is greater than the value of "rightDegrees", do the following.
 	{
-		turn("right", rightDegrees);
+		turn("right", rightDegrees);          // Call function "turn" and pass parameters "right" and "rightDegrees".
 	}
 	else                                      // Otherwise, do the following.
 	{
-		turn("left", leftDegrees);
+		turn("left", leftDegrees);            // Call function "turn" and pass parameters "left" and "leftDegrees".
 	}
-	return;
+	return;                                   // Return to parent function.
 }
 
+// Function "turn" causes the vehicle to perform its corrective acion, and reinitiates the program.
 void turn(String direction, int degrees)
 {
-	degrees = degrees * 2; // car turns approx half a degree per milisecond
+	// Convert degrees to time.
+	degrees = degrees * 2;          // (Car turns approximately 0.5 degrees per millisecond).
+
+	// Reverse the vehicle for 100 milliseconds.
 	digitalWrite(in2, LOW);
 	digitalWrite(in1, HIGH);
 	digitalWrite(in4, LOW);
@@ -258,6 +262,7 @@ void turn(String direction, int degrees)
 
 	if (direction == "right")
 	{
+		// Turn right.
 		digitalWrite(in2, LOW);
 		digitalWrite(in1, HIGH);
 		digitalWrite(in3, LOW);
@@ -266,8 +271,9 @@ void turn(String direction, int degrees)
 		analogWrite(enB, pwm);
 		delay(degrees);
 	}
-	else                                       // Otherwise, do the following.
+	else
 	{
+		// Turn left.
 		digitalWrite(in1, LOW);
 		digitalWrite(in2, HIGH);
 		digitalWrite(in4, LOW);
@@ -276,33 +282,10 @@ void turn(String direction, int degrees)
 		analogWrite(enB, pwm);
 		delay(degrees);
 	}
+	
+	// Reinitiate the program.
 	forward();                              // Call function "forward" with no parameters.
 }
-
-void turnLeft(int turn)                    // Function "turnLeft" is exactly the same as "turnRight" except for the following.
-{                                          //
-	digitalWrite(in2, LOW);                //
-	digitalWrite(in1, HIGH);               //
-	digitalWrite(in4, LOW);                //
-	digitalWrite(in3, HIGH);               //
-	analogWrite(enA, pwm);                 //
-	analogWrite(enB, pwm);                 //
-	delay(100);                            //
-	for (i = 0; i < turn; i++)             // Differently named local variable as the parameter.
-	{                                      // Opposite spin direction.
-		digitalWrite(in1, LOW);            //
-		digitalWrite(in2, HIGH);           //
-		digitalWrite(in4, LOW);            //
-		digitalWrite(in3, HIGH);           //
-		analogWrite(enA, pwm);             //
-		analogWrite(enB, pwm);             //
-		delay(10);                         //
-		analogWrite(enA, 0);               //
-		analogWrite(enB, 0);               //
-		delay(10);                         //
-	}                                      //
-	forward();                             //
-}                                          //
 
 // Function "readRangefinder" is used to pull data from the ultrasonic sensor and convert it to a distance value.
 long readRangefinder()                                // Declare long function "readRangefinder" with no parameters.

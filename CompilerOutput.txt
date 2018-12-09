@@ -1,0 +1,95 @@
+./opt/arduino-builder/arduino-builder -compile -core-api-version 10611 -hardware opt/arduino-builder/hardware -hardware ./opt/cores -tools opt/arduino-builder/tools -tools ./opt/tools -built-in-libraries opt/libraries/latest -logger humantags -fqbn arduino:avr:uno -build-cache /tmp -build-path /tmp/794390035/build -verbose -prefs runtime.tools.avr-gcc.path=./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2 -prefs runtime.tools.avrdude.path=./opt/tools/avrdude/6.3.0-arduino14 -prefs runtime.tools.arduinoOTA.path=./opt/tools/arduinoOTA/1.2.1 -libraries /tmp/794390035/custom -libraries /tmp/794390035/pinned /tmp/794390035/smartCar
+
+Using board 'uno' from platform in folder: /home/ubuntu/opt/cores/arduino/avr
+
+Using core 'arduino' from platform in folder: /home/ubuntu/opt/cores/arduino/avr
+
+Detecting libraries used...
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard /tmp/794390035/build/sketch/smartCar.ino.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src /tmp/794390035/build/sketch/smartCar.ino.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /tmp/794390035/build/sketch/smartCar.ino.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/avr/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/megaavr/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/nrf52/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/sam/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/samd/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/stm32f4/Servo.cpp -o /dev/null
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/newping_1_9_1/src/NewPing.cpp -o /dev/null
+
+Generating function prototypes...
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /tmp/794390035/build/sketch/smartCar.ino.cpp -o /tmp/794390035/build/preproc/ctags_target_for_gcc_minus_e.cpp
+
+/home/ubuntu/opt/arduino-builder/tools/ctags/5.8-arduino11/ctags -u --language-force=c++ -f - --c++-kinds=svpf --fields=KSTtzns --line-directives /tmp/794390035/build/preproc/ctags_target_for_gcc_minus_e.cpp
+
+Compiling sketch...
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /tmp/794390035/build/sketch/smartCar.ino.cpp -o /tmp/794390035/build/sketch/smartCar.ino.cpp.o
+
+Compiling libraries...
+
+Compiling library "servo_1_1_3"
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/avr/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/avr/Servo.cpp.o
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/megaavr/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/megaavr/Servo.cpp.o
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/nrf52/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/nrf52/Servo.cpp.o
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/sam/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/sam/Servo.cpp.o
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/samd/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/samd/Servo.cpp.o
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/servo_1_1_3/src/stm32f4/Servo.cpp -o /tmp/794390035/build/libraries/servo_1_1_3/stm32f4/Servo.cpp.o
+
+Compiling library "newping_1_9_1"
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10611 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/ubuntu/opt/cores/arduino/avr/cores/arduino -I/home/ubuntu/opt/cores/arduino/avr/variants/standard -I/home/ubuntu/opt/libraries/latest/servo_1_1_3/src -I/home/ubuntu/opt/libraries/latest/newping_1_9_1/src /home/ubuntu/opt/libraries/latest/newping_1_9_1/src/NewPing.cpp -o /tmp/794390035/build/libraries/newping_1_9_1/NewPing.cpp.o
+
+Compiling core...
+
+Using precompiled core: /tmp/core/core_arduino_avr_uno_86d814ab5ac6e08f9be464f7f3c7beb3.a
+
+Linking everything together...
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-gcc -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o /tmp/794390035/build/smartCar.ino.elf /tmp/794390035/build/sketch/smartCar.ino.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/avr/Servo.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/megaavr/Servo.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/nrf52/Servo.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/sam/Servo.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/samd/Servo.cpp.o /tmp/794390035/build/libraries/servo_1_1_3/stm32f4/Servo.cpp.o /tmp/794390035/build/libraries/newping_1_9_1/NewPing.cpp.o /tmp/794390035/build/../../core/core_arduino_avr_uno_86d814ab5ac6e08f9be464f7f3c7beb3.a -L/tmp/794390035/build -lm
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-objcopy -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 /tmp/794390035/build/smartCar.ino.elf /tmp/794390035/build/smartCar.ino.eep
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-objcopy -O ihex -R .eeprom /tmp/794390035/build/smartCar.ino.elf /tmp/794390035/build/smartCar.ino.hex
+
+Multiple libraries were found for "Servo.h"
+
+Used: /home/ubuntu/opt/libraries/latest/servo_1_1_3
+
+Not used: /home/ubuntu/opt/libraries/latest/rokitsmart_1_0_9
+
+Not used: /home/ubuntu/opt/libraries/latest/printoo_library_1_0_2
+
+Not used: /home/ubuntu/opt/libraries/latest/evive_2_0_1
+
+Multiple libraries were found for "NewPing.h"
+
+Used: /home/ubuntu/opt/libraries/latest/newping_1_9_1
+
+Not used: /home/ubuntu/opt/libraries/latest/nanoplayboard_0_1_1
+
+Using library servo_1_1_3 at version 1.1.3 in folder: /home/ubuntu/opt/libraries/latest/servo_1_1_3
+
+Using library newping_1_9_1 at version 1.9.1 in folder: /home/ubuntu/opt/libraries/latest/newping_1_9_1
+
+./opt/tools/avr-gcc/5.4.0-atmel3.6.1-arduino2/bin/avr-size -A /tmp/794390035/build/smartCar.ino.elf
+
+Sketch uses 4952 bytes (15%) of program storage space. Maximum is 32256 bytes.
+
+Global variables use 100 bytes (4%) of dynamic memory, leaving 1948 bytes for local variables. Maximum is 2048 bytes.
